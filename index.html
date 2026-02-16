@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriele Brucoli - Tutor Matematica</title>
+    <style>
+        /* IMPOSTAZIONI DI BASE */
+        html { margin: 0; padding: 0; overflow-y: auto; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #e6e6e6; 
+            margin: 0; 
+            padding: 20px 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* LA CARD */
+        .card { 
+            background: white; 
+            padding: 2rem 1.5rem; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            text-align: center; 
+            max-width: 350px; 
+            width: 90%; 
+            height: auto;
+        }
+        
+        /* FOTO E TITOLI */
+        img { 
+            width: 120px; 
+            height: 120px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 4px solid #ff7f00; 
+            margin-bottom: 10px;
+        }
+        
+        h1 { margin: 5px 0; font-size: 1.5rem; color: #333; }
+        
+        .intro { 
+            color: #ff7f00; 
+            font-size: 0.9rem; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px; 
+        }
+
+        /* BOX CONTATTI - SPOSTATI IN ALTO */
+        .contact-box {
+            background-color: #fff4eb; /* Arancione chiarissimo per risaltare */
+            border-left: 5px solid #ff7f00;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .contact-box:active { transform: scale(0.97); }
+        .header-box { display: flex; justify-content: space-between; width: 100%; align-items: center; }
+        .contact-label { font-size: 0.65rem; color: #888; text-transform: uppercase; }
+        .click-hint { font-size: 0.6rem; color: #ff7f00; font-weight: bold; }
+        .contact-value { font-size: 1rem; color: #333; font-weight: 600; margin-top: 2px; }
+        .copy-msg { position: absolute; right: 10px; top: 35%; font-size: 0.75rem; color: #ff7f00; font-weight: bold; opacity: 0; transition: opacity 0.3s; }
+
+        /* SEZIONE DESCRIZIONE */
+        .bio-title {
+            text-align: left;
+            font-size: 0.8rem;
+            color: #aaa;
+            text-transform: uppercase;
+            margin: 25px 0 10px 5px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .descrizione {
+            text-align: left;
+            color: #444;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            padding: 0 5px;
+        }
+
+        .descrizione b { color: #333; font-weight: 600; } /* Stile per il grassetto */
+        
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <img src="foto.jpg" alt="Gabriele Brucoli">
+    
+    <h1>Gabriele Brucoli</h1>
+    <div class="intro">Tutor di Matematica e Scienze</div>
+
+    <div class="contact-box" onclick="copiaTesto('gabrielebrucoli@gmail.com', 'msg-email')">
+        <div class="header-box">
+            <span class="contact-label">Email</span>
+            <span class="click-hint">Tocca per copiare</span>
+        </div>
+        <span class="contact-value">gabrielebrucoli@gmail.com</span>
+        <span class="copy-msg" id="msg-email">Copiato!</span>
+    </div>
+
+    <div class="contact-box" onclick="copiaTesto('+39 351 507 7161', 'msg-wa')">
+        <div class="header-box">
+            <span class="contact-label">WhatsApp</span>
+            <span class="click-hint">Tocca per copiare</span>
+        </div>
+        <span class="contact-value">+39 351 507 7161</span>
+        <span class="copy-msg" id="msg-wa">Copiato!</span>
+    </div>
+
+    <div class="bio-title">Su di me</div>
+    <div class="descrizione">
+        Ciao! Sono Gabriele, studente universitario di <b>Statistica</b> e diplomato al liceo scientifico <b>G. Galilei di Palermo</b>. 
+        <br><br>
+        Offro lezioni per il <b>recupero e la comprensione della matematica e materie affini</b>, per studenti di medie e superiori. Amo trasmettere conoscenza e non credo esistano materie "difficili", il trucco sta <b>nell'incuriosirsi</b> e nel trovare un proprio metodo di studio.
+        <br><br>
+        Le lezioni puntano a individuare le <b>difficoltà</b> e colmarle con una <b>comprensione intuitiva e profonda</b>, il tutto accompagnato da <b>esercitazioni mirate</b> per fissare ogni argomento.
+        <br><br>
+        Disponibile tipicamente il <b>venerdì pomeriggio e nel fine settimana</b>, con orari flessibili e possibilità di spostamento. <b>Lezioni a partire da 15€/h</b>. Per altre info non esitate a contattarmi!
+    </div>
+
+   
+</div>
+
+<script>
+    function copiaTesto(testo, idMessaggio) {
+        navigator.clipboard.writeText(testo).then(function() {
+            var msgElement = document.getElementById(idMessaggio);
+            msgElement.style.opacity = 1;
+            setTimeout(function() {
+                msgElement.style.opacity = 0;
+            }, 1200);
+        });
+    }
+</script>
+
+</body>
+</html>
